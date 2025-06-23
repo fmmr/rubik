@@ -7,6 +7,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Rubik's Cube - Mobile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -107,8 +110,8 @@
         .algorithm-image {
             grid-column: 1;
             grid-row: 2;
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
             border-radius: 3px;
         }
 
@@ -116,7 +119,7 @@
             grid-column: 2;
             grid-row: 1 / span 2;
             font-size: 1.6em;
-            font-family: 'Courier New', monospace;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
             line-height: 1.2;
             font-weight: 500;
             display: flex;
@@ -124,8 +127,48 @@
             justify-content: center;
             gap: 4px;
             padding-left: 10px;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.35em;
             transform: scaleY(1.1);
+        }
+
+        /* Auto-spacing for punctuation */
+        .paren-open {
+            margin-right: -0.15em;
+        }
+        
+        .paren-close {
+            margin-left: -0.2em;
+        }
+        
+        /* Apply tighter spacing to parentheses in groups */
+        .group,
+        .sexy,
+        .isexy,
+        .sledge {
+            /* Adjust spacing for opening parenthesis */
+            margin-left: -0.15em;
+            /* Adjust spacing for closing parenthesis */  
+            margin-right: -0.2em;
+        }
+        
+        /* Add normal spacing between adjacent groups */
+        .group + .group,
+        .group + .sexy,
+        .group + .isexy,
+        .group + .sledge,
+        .sexy + .group,
+        .sexy + .sexy,
+        .sexy + .isexy,
+        .sexy + .sledge,
+        .isexy + .group,
+        .isexy + .sexy,
+        .isexy + .isexy,
+        .isexy + .sledge,
+        .sledge + .group,
+        .sledge + .sexy,
+        .sledge + .isexy,
+        .sledge + .sledge {
+            margin-left: 0.15em;
         }
 
         .algorithm-line {
@@ -136,24 +179,24 @@
         .sexy {
             color: #fbbf24;
             font-weight: bold;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.2em;
         }
 
         .group {
             color: white;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.2em;
         }
 
         .isexy {
             color: #ff9c54;
             font-weight: bold;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.2em;
         }
 
         .sledge {
             color: #ffd93d;
             font-weight: bold;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.2em;
         }
 
         .num {
@@ -161,21 +204,36 @@
         }
 
         .prime {
-            margin-left: -0.4em;
+            margin-left: -0.5em;
+            margin-right: -0.15em;
         }
 
         .group .num,
         .sexy .num,
         .isexy .num,
         .sledge .num {
-            margin-left: -0.15em;
+            margin-left: -0.2em;
         }
 
         .group .prime,
         .sexy .prime,
         .isexy .prime,
         .sledge .prime {
-            margin-left: -0.15em;
+            margin-left: -0.3em;
+        }
+        
+        /* Special spacing for superscript ³ */
+        .super {
+            margin-left: -0.3em;
+            margin-right: 0.1em;
+        }
+        
+        .sexy .super,
+        .group .super,
+        .isexy .super,
+        .sledge .super {
+            margin-left: -0.3em;
+            margin-right: 0.1em;
         }
 
         .pll-separator {
@@ -194,7 +252,7 @@
                 <div class="algorithm-name">H</div>
                 <img class="algorithm-image" src="oll_h.png" alt="H">
                 <div class="algorithm-notation">
-                    <div class="algorithm-line">F<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)<span class="num">³</span></span>F</div>
+                    <div class="algorithm-line">F(RUR'U')³F</div>
                 </div>
             </div>
 
@@ -202,9 +260,9 @@
                 <div class="algorithm-name">Pi</div>
                 <img class="algorithm-image" src="oll_pi.png" alt="Pi">
                 <div class="algorithm-notation">
-                    <div class="algorithm-line">RU<span class="num">2</span></div>
-                    <div class="algorithm-line"><span class="group">(R2U<span class="prime">'</span>R2U<span class="prime">'</span>R2)<span></span></div>
-                    <div class="algorithm-line">U<span class="num">2</span>R</div>
+                    <div class="algorithm-line">RU2</div>
+                    <div class="algorithm-line">(R2U'R2U'R2)</div>
+                    <div class="algorithm-line">U2R</div>
                 </div>
             </div>
 
@@ -212,7 +270,7 @@
                 <div class="algorithm-name">Sune</div>
                 <img class="algorithm-image" src="oll_sune.png" alt="Sune">
                 <div class="algorithm-notation">
-                    <div class="algorithm-line">RUR<span class="prime">'</span>URUR<span class="prime">'</span></div>
+                    <div class="algorithm-line">RUR'URUR'</div>
                 </div>
             </div>
 
@@ -228,8 +286,8 @@
                 <div class="algorithm-name">L</div>
                 <img class="algorithm-image" src="oll_l.png" alt="L">
                 <div class="algorithm-notation">
-                    <div class="algorithm-line">x(R<span class="prime">'</span>URD<span class="prime">'</span>)</div>
-                    <div class="algorithm-line">(R<span class="prime">'</span>U<span class="prime">'</span>RD)</div>
+                    <div class="algorithm-line">x<span class="group">(R<span class="prime">'</span>URD<span class="prime">'</span>)</span></div>
+                    <div class="algorithm-line"><span class="group">(R<span class="prime">'</span>U<span class="prime">'</span>RD)</span></div>
                 </div>
             </div>
 
@@ -326,5 +384,59 @@
         <div class="content-placeholder">Additional Information</div>
     </section>
 </div>
+
+<script>
+// Clean algorithm formatter - detect groups first
+document.addEventListener('DOMContentLoaded', function() {
+    const algorithmLines = document.querySelectorAll('.algorithm-line');
+    
+    algorithmLines.forEach(line => {
+        console.log('Processing:', line.textContent);
+        
+        // Step 1: Detect special moves
+        let text = line.textContent;
+        
+        // Pattern: (RUR'U') optionally followed by ³ or digit
+        text = text.replace(/\(RUR'U'\)(\³|\d)?/g, function(match) {
+            console.log('Found sexy move:', match);
+            return '<span class="sexy">' + match + '</span>';
+        });
+        
+        // Pattern: (R'FRF')
+        text = text.replace(/\(R'FRF'\)/g, function(match) {
+            console.log('Found sledgehammer:', match);
+            return '<span class="sledge">' + match + '</span>';
+        });
+        
+        // Pattern: (URU'R')
+        text = text.replace(/\(URU'R'\)/g, function(match) {
+            console.log('Found isexy move:', match);
+            return '<span class="isexy">' + match + '</span>';
+        });
+        
+        // Pattern: Any remaining (...) groups that aren't inside spans
+        text = text.replace(/\([^)]*\)(?![^<]*<\/span>)/g, function(match) {
+            console.log('Found regular group:', match);
+            return '<span class="group">' + match + '</span>';
+        });
+        
+        // Step 2: Wrap individual characters
+        
+        // Wrap numbers and superscripts
+        text = text.replace(/³/g, '<span class="super">³</span>');
+        text = text.replace(/(\d)/g, '<span class="num">$1</span>');
+        
+        // Wrap apostrophes
+        text = text.replace(/'/g, '<span class="prime">\'</span>');
+        
+        // Wrap parentheses
+        text = text.replace(/\(/g, '<span class="paren-open">(</span>');
+        text = text.replace(/\)/g, '<span class="paren-close">)</span>');
+        
+        line.innerHTML = text;
+        console.log('Result:', line.innerHTML);
+    });
+});
+</script>
 </body>
 </html>
