@@ -18,23 +18,33 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #000;
             color: #fff;
-            overflow-x: hidden;
-            scroll-snap-type: y mandatory;
+            margin: 0;
+            padding: 0;
             height: 100vh;
             height: 100dvh;
+            overflow: hidden;
+        }
+
+        .scroll-container {
+            height: 100vh;
+            height: 100dvh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
         }
 
         .section {
             width: 100vw;
             height: 100vh;
             height: 100dvh;
-            padding: 20px;
+            padding: 5px 10px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             scroll-snap-align: start;
             scroll-snap-stop: always;
+            flex-shrink: 0;
         }
 
         .oll-section {
@@ -68,19 +78,19 @@
             gap: 1px;
             width: 100%;
             max-width: 380px;
-            height: 90vh;
-            height: 90dvh;
+            height: 95vh;
+            height: 95dvh;
             overflow: hidden;
         }
 
         .algorithm-item {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            padding: 6px;
+            border-radius: 4px;
+            padding: 5px;
             display: grid;
-            grid-template-columns: 60px 1fr;
+            grid-template-columns: 55px 1fr;
             grid-template-rows: auto auto;
-            gap: 4px 8px;
+            gap: 3px 8px;
             backdrop-filter: blur(10px);
             flex: 1;
         }
@@ -97,15 +107,15 @@
         .algorithm-image {
             grid-column: 1;
             grid-row: 2;
-            width: 70px;
-            height: 70px;
-            border-radius: 4px;
+            width: 52px;
+            height: 52px;
+            border-radius: 3px;
         }
 
         .algorithm-notation {
             grid-column: 2;
             grid-row: 1 / span 2;
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-family: 'Courier New', monospace;
             line-height: 1.2;
             font-weight: 500;
@@ -114,7 +124,7 @@
             justify-content: center;
             gap: 4px;
             padding-left: 10px;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.3em;
             transform: scaleY(1.1);
         }
 
@@ -128,6 +138,7 @@
             font-weight: bold;
             letter-spacing: 0.05em;
         }
+
         .group {
             color: white;
             letter-spacing: 0.05em;
@@ -136,18 +147,34 @@
         .isexy {
             color: #ff9c54;
             font-weight: bold;
+            letter-spacing: 0.05em;
         }
 
         .sledge {
             color: #ffd93d;
             font-weight: bold;
+            letter-spacing: 0.05em;
         }
 
         .num {
-            margin-left: -0.15em;
+            margin-left: -0.4em;
         }
 
         .prime {
+            margin-left: -0.4em;
+        }
+
+        .group .num,
+        .sexy .num,
+        .isexy .num,
+        .sledge .num {
+            margin-left: -0.15em;
+        }
+
+        .group .prime,
+        .sexy .prime,
+        .isexy .prime,
+        .sledge .prime {
             margin-left: -0.15em;
         }
 
@@ -160,137 +187,144 @@
     </style>
 </head>
 <body>
-<section class="section oll-section">
-    <div class="algorithm-grid">
-        <div class="algorithm-item">
-            <div class="algorithm-name">H</div>
-            <img class="algorithm-image" src="oll_h.png" alt="H">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">F<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)<span class="num">³</span></span>F</div>
+<div class="scroll-container">
+    <section class="section oll-section">
+        <div class="algorithm-grid">
+            <div class="algorithm-item">
+                <div class="algorithm-name">H</div>
+                <img class="algorithm-image" src="oll_h.png" alt="H">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">F<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)<span class="num">³</span></span>F</div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">Pi</div>
+                <img class="algorithm-image" src="oll_pi.png" alt="Pi">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">RU<span class="num">2</span></div>
+                    <div class="algorithm-line"><span class="group">(R2U<span class="prime">'</span>R2U<span class="prime">'</span>R2)<span></span></div>
+                    <div class="algorithm-line">U<span class="num">2</span>R</div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">Sune</div>
+                <img class="algorithm-image" src="oll_sune.png" alt="Sune">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">RUR<span class="prime">'</span>URUR<span class="prime">'</span></div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">Antisune</div>
+                <img class="algorithm-image" src="oll_antisune.png" alt="Antisune">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">RU<span class="num">2</span>R<span class="prime">'</span>U<span class="prime">'</span>RU<span class="prime">'</span>R<span class="prime">'</span></div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">L</div>
+                <img class="algorithm-image" src="oll_l.png" alt="L">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">x(R<span class="prime">'</span>URD<span class="prime">'</span>)</div>
+                    <div class="algorithm-line">(R<span class="prime">'</span>U<span class="prime">'</span>RD)</div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">T</div>
+                <img class="algorithm-image" src="oll_t.png" alt="T">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">x(LUR<span class="prime">'</span>U<span class="prime">'</span>)</div>
+                    <div class="algorithm-line">(L<span class="prime">'</span>URU<span class="prime">'</span>)</div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">U</div>
+                <img class="algorithm-image" src="oll_u.png" alt="U">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">R<span class="num">2</span>D(R<span class="prime">'</span>U<span class="num">2</span>R)D<span class="prime">'</span></div>
+                    <div class="algorithm-line">(R<span class="prime">'</span>U<span class="num">2</span>R<span class="prime">'</span>)</div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="algorithm-item">
-            <div class="algorithm-name">Pi</div>
-            <img class="algorithm-image" src="oll_pi.png" alt="Pi">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">RU<span class="num">2</span></div>
-                <div class="algorithm-line"><span class="group">(R2U<span class="prime">'</span>R2U<span class="prime">'</span>R2)<span></span></div>
-                <div class="algorithm-line">U<span class="num">2</span>R</div>
+    <section class="section pll-section">
+        <div class="algorithm-grid">
+            <!-- PLL Corner algorithms -->
+            <div class="algorithm-item">
+                <div class="algorithm-name">Diagonal</div>
+                <img class="algorithm-image" src="pll_diag.png" alt="Diagonal">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">FR<span class="group">(U<span class="prime">'</span>R<span class="prime">'</span>U<span class="prime">'</span>RUR<span class="prime">'</span>F<span
+                            class="prime">'</span>)</span></div>
+                    <div class="algorithm-line"><span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span><span class="sledge">(R<span class="prime">'</span>FRF<span
+                            class="prime">'</span>)</span></div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">Adjacent</div>
+                <img class="algorithm-image" src="pll_adj.png" alt="Adjacent">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line"><span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span><span class="group">(R<span class="prime">'</span>FR2)</span>
+                    </div>
+                    <div class="algorithm-line"><span class="group">(U<span class="prime">'</span>R<span class="prime">'</span>U<span class="prime">'</span>)</span><span class="group">(RUR<span
+                            class="prime">'</span>F<span class="prime">'</span>)</span></div>
+                </div>
+            </div>
+
+            <!-- Separator between Corner and Edge PLLs -->
+            <div class="pll-separator"></div>
+
+            <!-- PLL Edge algorithms -->
+            <div class="algorithm-item">
+                <div class="algorithm-name">H</div>
+                <img class="algorithm-image" src="pll_h.png" alt="H">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">M<span class="num">2</span>U<span class="prime">'</span>M<span class="num">2</span>U<span class="num">2</span>M<span class="num">2</span>U<span
+                            class="prime">'</span>M<span class="num">2</span></div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">Z</div>
+                <img class="algorithm-image" src="pll_z.png" alt="Z">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">M<span class="prime">'</span>U<span class="prime">'</span>M<span class="num">2</span>U<span class="prime">'</span>M<span class="num">2</span></div>
+                    <div class="algorithm-line">U<span class="prime">'</span>M<span class="prime">'</span>U<span class="num">2</span>M<span class="num">2</span></div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">Ua</div>
+                <img class="algorithm-image" src="pll_ua.png" alt="Ua">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">RU<span class="prime">'</span>RUR</div>
+                    <div class="algorithm-line"><span class="isexy">(URU<span class="prime">'</span>R<span class="prime">'</span>)</span></div>
+                    <div class="algorithm-line">U<span class="prime">'</span>R<span class="num">2</span></div>
+                </div>
+            </div>
+
+            <div class="algorithm-item">
+                <div class="algorithm-name">Ub</div>
+                <img class="algorithm-image" src="pll_ub.png" alt="Ub">
+                <div class="algorithm-notation">
+                    <div class="algorithm-line">R<span class="num">2</span>U<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span></div>
+                    <div class="algorithm-line">R<span class="prime">'</span>U<span class="prime">'</span>R<span class="prime">'</span>UR<span class="prime">'</span></div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="algorithm-item">
-            <div class="algorithm-name">Sune</div>
-            <img class="algorithm-image" src="oll_sune.png" alt="Sune">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">RUR<span class="prime">'</span>URUR<span class="prime">'</span></div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">Antisune</div>
-            <img class="algorithm-image" src="oll_antisune.png" alt="Antisune">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">RU<span class="num">2</span>R<span class="prime">'</span>U<span class="prime">'</span>RU<span class="prime">'</span>R<span class="prime">'</span></div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">L</div>
-            <img class="algorithm-image" src="oll_l.png" alt="L">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">x(R<span class="prime">'</span>URD<span class="prime">'</span>)</div>
-                <div class="algorithm-line">(R<span class="prime">'</span>U<span class="prime">'</span>RD)</div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">T</div>
-            <img class="algorithm-image" src="oll_t.png" alt="T">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">x(LUR<span class="prime">'</span>U<span class="prime">'</span>)</div>
-                <div class="algorithm-line">(L<span class="prime">'</span>URU<span class="prime">'</span>)</div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">U</div>
-            <img class="algorithm-image" src="oll_u.png" alt="U">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">R<span class="num">2</span>D(R<span class="prime">'</span>U<span class="num">2</span>R)D<span class="prime">'</span></div>
-                <div class="algorithm-line">(R<span class="prime">'</span>U<span class="num">2</span>R<span class="prime">'</span>)</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section pll-section">
-    <div class="algorithm-grid">
-        <!-- PLL Corner algorithms -->
-        <div class="algorithm-item">
-            <div class="algorithm-name">Diagonal</div>
-            <img class="algorithm-image" src="pll_diag.png" alt="Diagonal">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">FR<span class="group">(U<span class="prime">'</span>R<span class="prime">'</span>U<span class="prime">'</span>RUR<span class="prime">'</span>F<span class="prime">'</span>)</span></div>
-                <div class="algorithm-line"><span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span><span class="sledge">(R<span class="prime">'</span>FRF<span class="prime">'</span>)</span></div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">Adjacent</div>
-            <img class="algorithm-image" src="pll_adj.png" alt="Adjacent">
-            <div class="algorithm-notation">
-                <div class="algorithm-line"><span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span><span class="group">(R<span class="prime">'</span>FR2)</span></div>
-                <div class="algorithm-line"><span class="group">(U<span class="prime">'</span>R<span class="prime">'</span>U<span class="prime">'</span>)</span><span class="group">(RUR<span class="prime">'</span>F<span class="prime">'</span>)</span></div>
-            </div>
-        </div>
-
-        <!-- Separator between Corner and Edge PLLs -->
-        <div class="pll-separator"></div>
-
-        <!-- PLL Edge algorithms -->
-        <div class="algorithm-item">
-            <div class="algorithm-name">H</div>
-            <img class="algorithm-image" src="pll_h.png" alt="H">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">M<span class="num">2</span>U<span class="prime">'</span>M<span class="num">2</span>U<span class="num">2</span>M<span class="num">2</span>U<span class="prime">'</span>M<span class="num">2</span></div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">Z</div>
-            <img class="algorithm-image" src="pll_z.png" alt="Z">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">M<span class="prime">'</span>U<span class="prime">'</span>M<span class="num">2</span>U<span class="prime">'</span>M<span class="num">2</span></div>
-                <div class="algorithm-line">U<span class="prime">'</span>M<span class="prime">'</span>U<span class="num">2</span>M<span class="num">2</span></div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">Ua</div>
-            <img class="algorithm-image" src="pll_ua.png" alt="Ua">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">RU<span class="prime">'</span>RUR</div>
-                <div class="algorithm-line"><span class="isexy">(URU<span class="prime">'</span>R<span class="prime">'</span>)</span></div>
-                <div class="algorithm-line">U<span class="prime">'</span>R<span class="num">2</span></div>
-            </div>
-        </div>
-
-        <div class="algorithm-item">
-            <div class="algorithm-name">Ub</div>
-            <img class="algorithm-image" src="pll_ub.png" alt="Ub">
-            <div class="algorithm-notation">
-                <div class="algorithm-line">R<span class="num">2</span>U<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span></div>
-                <div class="algorithm-line">R<span class="prime">'</span>U<span class="prime">'</span>R<span class="prime">'</span>UR<span class="prime">'</span></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section extra-section">
-    <h1 class="section-title">EXTRA</h1>
-    <div class="content-placeholder">Additional Information</div>
-</section>
+    <section class="section extra-section">
+        <h1 class="section-title">EXTRA</h1>
+        <div class="content-placeholder">Additional Information</div>
+    </section>
+</div>
 </body>
 </html>
