@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubik's Cube - Mobile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+        }
+
+        .section {
+            width: 100vw;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+        }
+
+        .oll-section {
+            background: linear-gradient(135deg, #1b4332, #2d5016);
+        }
+
+        .pll-section {
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+        }
+
+        .extra-section {
+            background: linear-gradient(135deg, #2d1b69, #11998e);
+        }
+
+        .section-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content-placeholder {
+            font-size: 1.2em;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        .algorithm-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            width: 100%;
+            max-width: 380px;
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        .algorithm-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 6px;
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            grid-template-rows: auto auto;
+            gap: 4px 8px;
+            backdrop-filter: blur(10px);
+            flex: 1;
+        }
+
+        .algorithm-name {
+            grid-column: 1;
+            grid-row: 1;
+            font-size: 0.7em;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+
+        .algorithm-image {
+            grid-column: 1;
+            grid-row: 2;
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+        }
+
+        .algorithm-notation {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            font-size: 1.5em;
+            font-family: 'Courier New', monospace;
+            line-height: 1.2;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-top: 8px;
+            letter-spacing: 0.15em;
+            transform: scaleY(1.1);
+        }
+
+        .algorithm-line {
+            display: block;
+            text-indent: 0.15em;
+        }
+
+        .sexy {
+            color: #fbbf24;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+        .group {
+            color: white;
+            letter-spacing: 0.05em;
+        }
+
+        .isexy {
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .sledge {
+            color: #ffd93d;
+            font-weight: bold;
+        }
+
+        .num {
+            margin-left: -0.15em;
+        }
+
+        .prime {
+            margin-left: -0.15em;
+        }
+
+        .pll-separator {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 8px 0;
+            border-radius: 1px;
+        }
+    </style>
+</head>
+<body>
+<section class="section oll-section">
+    <div class="algorithm-grid">
+        <div class="algorithm-item">
+            <div class="algorithm-name">H</div>
+            <img class="algorithm-image" src="oll_h.png" alt="H">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">F<span class="sexy">(RUR'U')<span class="num">³</span></span>F</div>
+                <div class="algorithm-line"></div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">Pi</div>
+            <img class="algorithm-image" src="oll_pi.png" alt="Pi">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">RU<span class="num">2</span></div>
+                <div class="algorithm-line"><span class="group">(R2U'R2U'R2)<span></span></div>
+                <div class="algorithm-line">U<span class="num">2</span>R</div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">Sune</div>
+            <img class="algorithm-image" src="oll_sune.png" alt="Sune">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">RUR'URUR'</div>
+                <div class="algorithm-line"></div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">Antisune</div>
+            <img class="algorithm-image" src="oll_antisune.png" alt="Antisune">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">RU<span class="num">2</span>R'U'RU'R'</div>
+                <div class="algorithm-line"></div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">L</div>
+            <img class="algorithm-image" src="oll_l.png" alt="L">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">x(R'URD')</div>
+                <div class="algorithm-line">(R'U'RD)</div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">T</div>
+            <img class="algorithm-image" src="oll_t.png" alt="T">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">x(LUR'U')</div>
+                <div class="algorithm-line">(L'URU')</div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">U</div>
+            <img class="algorithm-image" src="oll_u.png" alt="U">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">R<span class="num">2</span>D(R'U<span class="num">2</span>R)D'</div>
+                <div class="algorithm-line">(R'U<span class="num">2</span>R')</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section pll-section">
+    <div class="algorithm-grid">
+        <!-- PLL Corner algorithms -->
+        <div class="algorithm-item">
+            <div class="algorithm-name">Diagonal</div>
+            <img class="algorithm-image" src="pll_diag.png" alt="Diagonal">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">FR<span class="group">(U'R'U'RUR'F')</span></div>
+                <div class="algorithm-line"><span class="sexy">(RUR'U')</span><span class="sledge">(R'FRF')</span></div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">Adjacent</div>
+            <img class="algorithm-image" src="pll_adj.png" alt="Adjacent">
+            <div class="algorithm-notation">
+                <div class="algorithm-line"><span class="sexy">(RUR'U')</span><span class="group">(R'FR2)</span></div>
+                <div class="algorithm-line"><span class="group">(U'R'U')</span><span class="group">(RUR'F')</span></div>
+            </div>
+        </div>
+
+        <!-- Separator between Corner and Edge PLLs -->
+        <div class="pll-separator"></div>
+
+        <!-- PLL Edge algorithms -->
+        <div class="algorithm-item">
+            <div class="algorithm-name">H</div>
+            <img class="algorithm-image" src="pll_h.png" alt="H">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">M<span class="num">2</span>U'M<span class="num">2</span>U<span class="num">2</span>M<span class="num">2</span>U'M<span class="num">2</span></div>
+                <div class="algorithm-line"></div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">Z</div>
+            <img class="algorithm-image" src="pll_z.png" alt="Z">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">M'U'M<span class="num">2</span>U'M<span class="num">2</span></div>
+                <div class="algorithm-line">U'M'U<span class="num">2</span>M<span class="num">2</span></div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">Ua</div>
+            <img class="algorithm-image" src="pll_ua.png" alt="Ua">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">RU'RUR<span class="isexy">(URU'R')</span>U'R<span class="num">2</span></div>
+                <div class="algorithm-line"></div>
+            </div>
+        </div>
+
+        <div class="algorithm-item">
+            <div class="algorithm-name">Ub</div>
+            <img class="algorithm-image" src="pll_ub.png" alt="Ub">
+            <div class="algorithm-notation">
+                <div class="algorithm-line">R<span class="num">2</span>U<span class="sexy">(RUR'U')</span>R'U'R'UR'</div>
+                <div class="algorithm-line"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section extra-section">
+    <h1 class="section-title">EXTRA</h1>
+    <div class="content-placeholder">Additional Information</div>
+</section>
+</body>
+</html>
