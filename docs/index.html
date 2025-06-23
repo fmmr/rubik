@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Rubik's Cube - Mobile</title>
     <style>
         * {
@@ -17,17 +20,21 @@
             color: #fff;
             overflow-x: hidden;
             scroll-snap-type: y mandatory;
+            height: 100vh;
+            height: 100dvh;
         }
 
         .section {
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
 
         .oll-section {
@@ -62,6 +69,7 @@
             width: 100%;
             max-width: 380px;
             height: 90vh;
+            height: 90dvh;
             overflow: hidden;
         }
 
@@ -89,8 +97,8 @@
         .algorithm-image {
             grid-column: 1;
             grid-row: 2;
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 4px;
         }
 
@@ -103,8 +111,9 @@
             font-weight: 500;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             gap: 4px;
-            padding-top: 8px;
+            padding-left: 10px;
             letter-spacing: 0.15em;
             transform: scaleY(1.1);
         }
@@ -125,7 +134,7 @@
         }
 
         .isexy {
-            color: #fbbf24;
+            color: #ff9c54;
             font-weight: bold;
         }
 
@@ -158,7 +167,6 @@
             <img class="algorithm-image" src="oll_h.png" alt="H">
             <div class="algorithm-notation">
                 <div class="algorithm-line">F<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)<span class="num">³</span></span>F</div>
-                <div class="algorithm-line"></div>
             </div>
         </div>
 
@@ -177,7 +185,6 @@
             <img class="algorithm-image" src="oll_sune.png" alt="Sune">
             <div class="algorithm-notation">
                 <div class="algorithm-line">RUR<span class="prime">'</span>URUR<span class="prime">'</span></div>
-                <div class="algorithm-line"></div>
             </div>
         </div>
 
@@ -186,7 +193,6 @@
             <img class="algorithm-image" src="oll_antisune.png" alt="Antisune">
             <div class="algorithm-notation">
                 <div class="algorithm-line">RU<span class="num">2</span>R<span class="prime">'</span>U<span class="prime">'</span>RU<span class="prime">'</span>R<span class="prime">'</span></div>
-                <div class="algorithm-line"></div>
             </div>
         </div>
 
@@ -249,7 +255,6 @@
             <img class="algorithm-image" src="pll_h.png" alt="H">
             <div class="algorithm-notation">
                 <div class="algorithm-line">M<span class="num">2</span>U<span class="prime">'</span>M<span class="num">2</span>U<span class="num">2</span>M<span class="num">2</span>U<span class="prime">'</span>M<span class="num">2</span></div>
-                <div class="algorithm-line"></div>
             </div>
         </div>
 
@@ -266,8 +271,9 @@
             <div class="algorithm-name">Ua</div>
             <img class="algorithm-image" src="pll_ua.png" alt="Ua">
             <div class="algorithm-notation">
-                <div class="algorithm-line">RU<span class="prime">'</span>RUR<span class="isexy">(URU<span class="prime">'</span>R<span class="prime">'</span>)</span>U<span class="prime">'</span>R<span class="num">2</span></div>
-                <div class="algorithm-line"></div>
+                <div class="algorithm-line">RU<span class="prime">'</span>RUR</div>
+                <div class="algorithm-line"><span class="isexy">(URU<span class="prime">'</span>R<span class="prime">'</span>)</span></div>
+                <div class="algorithm-line">U<span class="prime">'</span>R<span class="num">2</span></div>
             </div>
         </div>
 
@@ -275,8 +281,8 @@
             <div class="algorithm-name">Ub</div>
             <img class="algorithm-image" src="pll_ub.png" alt="Ub">
             <div class="algorithm-notation">
-                <div class="algorithm-line">R<span class="num">2</span>U<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span>R<span class="prime">'</span>U<span class="prime">'</span>R<span class="prime">'</span>UR<span class="prime">'</span></div>
-                <div class="algorithm-line"></div>
+                <div class="algorithm-line">R<span class="num">2</span>U<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span></div>
+                <div class="algorithm-line">R<span class="prime">'</span>U<span class="prime">'</span>R<span class="prime">'</span>UR<span class="prime">'</span></div>
             </div>
         </div>
     </div>
