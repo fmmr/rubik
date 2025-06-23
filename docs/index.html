@@ -17,6 +17,11 @@
     <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
     <meta name="theme-color" content="#1b4332">
     <meta name="apple-mobile-web-app-title" content="Rubik's Cube">
+    
+    <!-- Prevent aggressive caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://rubik.rodland.no/">
@@ -407,51 +412,56 @@
     const algorithmLines = document.querySelectorAll('.algorithm-line');
     
     algorithmLines.forEach(line => {
-        console.log('Processing:', line.textContent);
+        let text = line.textContent;
+
+        // Step 1: Detect special moves
+        text = text.replace(/\(RUR'U'\)(\³|\d)?/g, '<span class="sexy">$&</span>');
+        text = text.replace(/\(R'FRF'\)/g, '<span class="sledge">$&</span>');
+        text = text.replace(/\(URU'R'\)/g, '<span class="isexy">$&</span>');
+        text = text.replace(/\([^)]*\)(?![^<]*<\/span>)/g, '<span class="group">$&</span>');
+
+        // Step 2: Wrap individual characters
+        text = text.replace(/³/g, '<span class="super">³</span>');
+        text = text.replace(/(\d)/g, '<span class="num">$1</span>');
+        text = text.replace(/'/g, '<span class="prime">\'</span>');
+        text = text.replace(/\(/g, '<span class="paren-open">(</span>');
+        text = text.replace(/\)/g, '<span class="paren-close">)</span>');
+
+        line.innerHTML = text;
+    });
+
+    // Pull-to-refresh functionality
+    let startY = 0;
+    let scrollContainer = document.querySelector('.scroll-container');
+    
+    scrollContainer.addEventListener('touchstart', function(e) {
+        startY = e.touches[0].pageY;
+    });
+    
+    scrollContainer.addEventListener('touchmove', function(e) {
+        let currentY = e.touches[0].pageY;
+        let scrollTop = scrollContainer.scrollTop;
         
-            // Step 1: Detect special moves
-            let text = line.textContent;
-
-            // Pattern: (RUR'U') optionally followed by ³ or digit
-        text = text.replace(/\(RUR'U'\)(\³|\d)?/g, function(match) {
-            console.log('Found sexy move:', match);
-            return '<span class="sexy">' + match + '</span>';
-        });
-
-            // Pattern: (R'FRF')
-        text = text.replace(/\(R'FRF'\)/g, function(match) {
-            console.log('Found sledgehammer:', match);
-            return '<span class="sledge">' + match + '</span>';
-        });
-
-            // Pattern: (URU'R')
-        text = text.replace(/\(URU'R'\)/g, function(match) {
-            console.log('Found isexy move:', match);
-            return '<span class="isexy">' + match + '</span>';
-        });
-
-            // Pattern: Any remaining (...) groups that aren't inside spans
-        text = text.replace(/\([^)]*\)(?![^<]*<\/span>)/g, function(match) {
-            console.log('Found regular group:', match);
-            return '<span class="group">' + match + '</span>';
-        });
-
-            // Step 2: Wrap individual characters
-
-            // Wrap numbers and superscripts
-            text = text.replace(/³/g, '<span class="super">³</span>');
-            text = text.replace(/(\d)/g, '<span class="num">$1</span>');
-
-            // Wrap apostrophes
-            text = text.replace(/'/g, '<span class="prime">\'</span>');
-
-            // Wrap parentheses
-            text = text.replace(/\(/g, '<span class="paren-open">(</span>');
-            text = text.replace(/\)/g, '<span class="paren-close">)</span>');
-
-            line.innerHTML = text;
-            console.log('Result:', line.innerHTML);
-        });
+        // If at top and pulling down
+        if (scrollTop === 0 && currentY > startY + 50) {
+            // Add visual feedback
+            document.body.style.backgroundColor = '#2d5016';
+            e.preventDefault();
+        }
+    });
+    
+    scrollContainer.addEventListener('touchend', function(e) {
+        let currentY = e.changedTouches[0].pageY;
+        let scrollTop = scrollContainer.scrollTop;
+        
+        // If pulled down enough at top, reload
+        if (scrollTop === 0 && currentY > startY + 100) {
+            location.reload(true);
+        }
+        
+        // Reset visual feedback
+        document.body.style.backgroundColor = '#000';
+    });
     });
 </script>
 </body>
