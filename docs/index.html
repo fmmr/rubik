@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Rubik's Cube - Mobile</title>
-    
+
     <!-- Favicons and app icons -->
     <link rel="icon" type="image/svg+xml" href="rubik.svg">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -17,10 +17,10 @@
     <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
     <meta name="theme-color" content="#1b4332">
     <meta name="apple-mobile-web-app-title" content="Rubik's Cube">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://rubik.rodland.no/">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
             width: 100vw;
             height: 100vh;
             height: 100dvh;
-            padding: 5px 10px;
+            padding: 3px 5px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -95,44 +95,46 @@
             gap: 1px;
             width: 100%;
             max-width: 380px;
-            height: 95vh;
-            height: 95dvh;
+            height: 98vh;
+            height: 98dvh;
             overflow: hidden;
         }
 
         .algorithm-item {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
-            padding: 5px;
+            padding: 3px;
             display: grid;
-            grid-template-columns: 55px 1fr;
-            grid-template-rows: auto auto;
-            gap: 3px 8px;
+            grid-template-columns: 75px 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 1px 6px;
             backdrop-filter: blur(10px);
             flex: 1;
         }
 
         .algorithm-name {
-            grid-column: 1;
+            grid-column: 3;
             grid-row: 1;
-            font-size: 0.7em;
+            font-size: 0.4em;
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.9);
-            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: left;
+            margin-bottom: 2px;
         }
 
         .algorithm-image {
             grid-column: 1;
-            grid-row: 2;
-            width: 56px;
-            height: 56px;
+            grid-row: 1 / span 2;
+            width:85px;
+            height: 85px;
             border-radius: 3px;
+            align-self: center;
         }
 
         .algorithm-notation {
             grid-column: 2;
             grid-row: 1 / span 2;
-            font-size: 1.6em;
+            font-size: 1.4em;
             font-family: 'JetBrains Mono', 'Courier New', monospace;
             line-height: 1.2;
             font-weight: 500;
@@ -149,11 +151,11 @@
         .paren-open {
             margin-right: -0.15em;
         }
-        
+
         .paren-close {
             margin-left: -0.2em;
         }
-        
+
         /* Apply tighter spacing to parentheses in groups */
         .group,
         .sexy,
@@ -161,10 +163,10 @@
         .sledge {
             /* Adjust spacing for opening parenthesis */
             margin-left: -0.15em;
-            /* Adjust spacing for closing parenthesis */  
+            /* Adjust spacing for closing parenthesis */
             margin-right: -0.2em;
         }
-        
+
         /* Add normal spacing between adjacent groups */
         .group + .group,
         .group + .sexy,
@@ -235,13 +237,13 @@
         .sledge .prime {
             margin-left: -0.3em;
         }
-        
+
         /* Special spacing for superscript ³ */
         .super {
             margin-left: -0.3em;
             margin-right: 0.1em;
         }
-        
+
         .sexy .super,
         .group .super,
         .isexy .super,
@@ -400,57 +402,57 @@
 </div>
 
 <script>
-// Clean algorithm formatter - detect groups first
-document.addEventListener('DOMContentLoaded', function() {
+    // Clean algorithm formatter - detect groups first
+    document.addEventListener('DOMContentLoaded', function () {
     const algorithmLines = document.querySelectorAll('.algorithm-line');
     
     algorithmLines.forEach(line => {
         console.log('Processing:', line.textContent);
         
-        // Step 1: Detect special moves
-        let text = line.textContent;
-        
-        // Pattern: (RUR'U') optionally followed by ³ or digit
+            // Step 1: Detect special moves
+            let text = line.textContent;
+
+            // Pattern: (RUR'U') optionally followed by ³ or digit
         text = text.replace(/\(RUR'U'\)(\³|\d)?/g, function(match) {
             console.log('Found sexy move:', match);
             return '<span class="sexy">' + match + '</span>';
         });
-        
-        // Pattern: (R'FRF')
+
+            // Pattern: (R'FRF')
         text = text.replace(/\(R'FRF'\)/g, function(match) {
             console.log('Found sledgehammer:', match);
             return '<span class="sledge">' + match + '</span>';
         });
-        
-        // Pattern: (URU'R')
+
+            // Pattern: (URU'R')
         text = text.replace(/\(URU'R'\)/g, function(match) {
             console.log('Found isexy move:', match);
             return '<span class="isexy">' + match + '</span>';
         });
-        
-        // Pattern: Any remaining (...) groups that aren't inside spans
+
+            // Pattern: Any remaining (...) groups that aren't inside spans
         text = text.replace(/\([^)]*\)(?![^<]*<\/span>)/g, function(match) {
             console.log('Found regular group:', match);
             return '<span class="group">' + match + '</span>';
         });
-        
-        // Step 2: Wrap individual characters
-        
-        // Wrap numbers and superscripts
-        text = text.replace(/³/g, '<span class="super">³</span>');
-        text = text.replace(/(\d)/g, '<span class="num">$1</span>');
-        
-        // Wrap apostrophes
-        text = text.replace(/'/g, '<span class="prime">\'</span>');
-        
-        // Wrap parentheses
-        text = text.replace(/\(/g, '<span class="paren-open">(</span>');
-        text = text.replace(/\)/g, '<span class="paren-close">)</span>');
-        
-        line.innerHTML = text;
-        console.log('Result:', line.innerHTML);
+
+            // Step 2: Wrap individual characters
+
+            // Wrap numbers and superscripts
+            text = text.replace(/³/g, '<span class="super">³</span>');
+            text = text.replace(/(\d)/g, '<span class="num">$1</span>');
+
+            // Wrap apostrophes
+            text = text.replace(/'/g, '<span class="prime">\'</span>');
+
+            // Wrap parentheses
+            text = text.replace(/\(/g, '<span class="paren-open">(</span>');
+            text = text.replace(/\)/g, '<span class="paren-close">)</span>');
+
+            line.innerHTML = text;
+            console.log('Result:', line.innerHTML);
+        });
     });
-});
 </script>
 </body>
 </html>
