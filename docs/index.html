@@ -431,37 +431,69 @@
         line.innerHTML = text;
     });
 
-    // Pull-to-refresh functionality
+    // Pull-to-refresh functionality - simpler approach
     let startY = 0;
+    let pulling = false;
     let scrollContainer = document.querySelector('.scroll-container');
     
-    scrollContainer.addEventListener('touchstart', function(e) {
-        startY = e.touches[0].pageY;
+    document.addEventListener('touchstart', function(e) {
+        startY = e.touches[0].clientY;
+        pulling = false;
     });
     
-    scrollContainer.addEventListener('touchmove', function(e) {
-        let currentY = e.touches[0].pageY;
-        let scrollTop = scrollContainer.scrollTop;
+    document.addEventListener('touchmove', function(e) {
+        let currentY = e.touches[0].clientY;
+        let pullDistance = currentY - startY;
         
-        // If at top and pulling down
-        if (scrollTop === 0 && currentY > startY + 50) {
-            // Add visual feedback
-            document.body.style.backgroundColor = '#2d5016';
-            e.preventDefault();
+        // Only if we're at the very top and pulling down
+        if (scrollContainer.scrollTop === 0 && pullDistance > 0) {
+            pulling = true;
+            
+            // Beautiful green gradient feedback
+            if (pullDistance > 80) {
+                document.body.style.backgroundColor = '#BECFCA';
+                document.body.style.transform = 'scale(0.92)';
+            } else if (pullDistance > 70) {
+                document.body.style.backgroundColor = '#A6BCB5';
+                document.body.style.transform = 'scale(0.93)';
+            } else if (pullDistance > 60) {
+                document.body.style.backgroundColor = '#8EA99F';
+                document.body.style.transform = 'scale(0.94)';
+            } else if (pullDistance > 50) {
+                document.body.style.backgroundColor = '#76958A';
+                document.body.style.transform = 'scale(0.95)';
+            } else if (pullDistance > 40) {
+                document.body.style.backgroundColor = '#5F8174';
+                document.body.style.transform = 'scale(0.96)';
+            } else if (pullDistance > 30) {
+                document.body.style.backgroundColor = '#486D5E';
+                document.body.style.transform = 'scale(0.97)';
+            } else if (pullDistance > 20) {
+                document.body.style.backgroundColor = '#315848';
+                document.body.style.transform = 'scale(0.98)';
+            } else if (pullDistance > 10) {
+                document.body.style.backgroundColor = '#1b4332';
+                document.body.style.transform = 'scale(0.99)';
+            }
         }
     });
     
-    scrollContainer.addEventListener('touchend', function(e) {
-        let currentY = e.changedTouches[0].pageY;
-        let scrollTop = scrollContainer.scrollTop;
-        
-        // If pulled down enough at top, reload
-        if (scrollTop === 0 && currentY > startY + 100) {
-            location.reload(true);
+    document.addEventListener('touchend', function(e) {
+        if (pulling) {
+            let endY = e.changedTouches[0].clientY;
+            let pullDistance = endY - startY;
+            
+            // If pulled far enough, reload
+            if (pullDistance > 80) {
+                document.body.innerHTML = '<div style="text-align:center; margin-top:50vh; color:white;">Refreshing...</div>';
+                setTimeout(() => location.reload(true), 100);
+            } else {
+                // Reset visual feedback
+                document.body.style.backgroundColor = '#000';
+                document.body.style.transform = 'scale(1)';
+            }
         }
-        
-        // Reset visual feedback
-        document.body.style.backgroundColor = '#000';
+        pulling = false;
     });
     });
 </script>
