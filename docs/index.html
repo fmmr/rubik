@@ -107,7 +107,7 @@
             border-radius: 4px;
             padding: 3px;
             display: grid;
-            grid-template-columns: 75px 1fr 60px;
+            grid-template-columns: 75px 1fr;
             grid-template-rows: auto 1fr;
             gap: 1px 12px;
             backdrop-filter: blur(10px);
@@ -118,7 +118,7 @@
         .algorithm-name {
             grid-column: 2;
             grid-row: 1;
-            font-size: 0.4em;
+            font-size: 0.9em;
             font-weight: bold;
             color: rgba(255, 255, 255, 0.7);
             text-align: right;
@@ -152,6 +152,10 @@
             padding-left: 10px;
             letter-spacing: 0.35em;
             transform: scaleY(1.1);
+        }
+
+        .algorithm-item.with-arrow {
+            grid-template-columns: 75px 1fr 60px;
         }
 
         .algorithm-arrow {
@@ -391,7 +395,7 @@
                 </div>
             </div>
 
-            <div class="algorithm-item">
+            <div class="algorithm-item with-arrow">
                 <div class="algorithm-name">Ua</div>
                 <img class="algorithm-image" src="pll_ua.png" alt="Ua">
                 <div class="algorithm-notation">
@@ -402,7 +406,7 @@
                 <div class="algorithm-arrow">←</div>
             </div>
 
-            <div class="algorithm-item">
+            <div class="algorithm-item with-arrow">
                 <div class="algorithm-name">Ub</div>
                 <img class="algorithm-image" src="pll_ub.png" alt="Ub">
                 <div class="algorithm-notation">
