@@ -117,16 +117,21 @@
             gap: 1px 12px;
             backdrop-filter: blur(10px);
             flex: 1;
+            position: relative;
         }
 
         .algorithm-name {
-            grid-column: 3;
+            grid-column: 2;
             grid-row: 1;
             font-size: 0.4em;
             font-weight: bold;
             color: rgba(255, 255, 255, 0.7);
-            text-align: left;
-            margin-bottom: 2px;
+            text-align: right;
+            align-self: start;
+            white-space: nowrap;
+            position: absolute;
+            top: 3px;
+            right: 3px;
         }
 
         .algorithm-image {
