@@ -2,6 +2,8 @@
 
 Mobile-optimized web app for learning 2-Look OLL and PLL algorithms.
 
+*By Fredrik Rødland*
+
 🎯 **Live**: [https://rubik.rodland.no](https://rubik.rodland.no)
 
 ## Features
