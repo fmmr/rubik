@@ -19,11 +19,6 @@
     <meta name="theme-color" content="#1b4332">
     <meta name="apple-mobile-web-app-title" content="Rubik's Cube">
     
-    <!-- Prevent aggressive caching -->
-    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-
     <!-- Canonical URL -->
     <link rel="canonical" href="https://rubik.rodland.no/">
 
@@ -112,7 +107,7 @@
             border-radius: 4px;
             padding: 3px;
             display: grid;
-            grid-template-columns: 75px 1fr;
+            grid-template-columns: 75px 1fr 60px;
             grid-template-rows: auto 1fr;
             gap: 1px 12px;
             backdrop-filter: blur(10px);
@@ -157,6 +152,16 @@
             padding-left: 10px;
             letter-spacing: 0.35em;
             transform: scaleY(1.1);
+        }
+
+        .algorithm-arrow {
+            grid-column: 3;
+            grid-row: 1 / span 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5em;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* Auto-spacing for punctuation */
@@ -394,6 +399,7 @@
                     <div class="algorithm-line"><span class="isexy">(URU<span class="prime">'</span>R<span class="prime">'</span>)</span></div>
                     <div class="algorithm-line">U<span class="prime">'</span>R<span class="num">2</span></div>
                 </div>
+                <div class="algorithm-arrow">←</div>
             </div>
 
             <div class="algorithm-item">
@@ -403,6 +409,7 @@
                     <div class="algorithm-line">R<span class="num">2</span>U<span class="sexy">(RUR<span class="prime">'</span>U<span class="prime">'</span>)</span></div>
                     <div class="algorithm-line">R<span class="prime">'</span>U<span class="prime">'</span>R<span class="prime">'</span>UR<span class="prime">'</span></div>
                 </div>
+                <div class="algorithm-arrow">→</div>
             </div>
         </div>
     </section>
